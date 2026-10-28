@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <meta
+      name="description"
+      content="A small interactive playground for testing forms, buttons, dialogs, and UI states."
+    />
+    <title>Fieldwork — UI testing playground</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Fieldwork home">
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span>fieldwork<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="environment"><span class="status-dot"></span> Playground</span>
+          <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle color theme">
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR FRIENDLY TEST ENVIRONMENT</div>
+          <h1 id="page-title">A little space to<br /><span>try things out.</span></h1>
+          <p class="intro-copy">
+            Click around, fill things in, and see what happens. This page is built for
+            testing—not breaking anything important.
+          </p>
+          <div class="intro-meta">
+            <span class="meta-item"><span class="meta-check">✓</span> No setup needed</span>
+            <span class="meta-item"><span class="meta-check">✓</span> Nothing gets saved</span>
+          </div>
+          <div class="hero-decoration" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
+            <div class="orbit-center"><span>✳</span></div>
+            <span class="orbit-spark spark-one">✦</span>
+            <span class="orbit-spark spark-two">✳</span>
+            <span class="orbit-spark spark-three">·</span>
+          </div>
+        </section>
+
+        <section class="workspace" aria-label="Interactive test components">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">THE TOOLKIT</span>
+              <h2>Pick something to try</h2>
+            </div>
+            <span class="component-count"><span class="count-dot"></span> 4 interactive components</span>
+          </div>
+
+          <div class="card-grid">
+            <article class="card form-card">
+              <div class="card-heading">
+                <div class="card-icon icon-peach" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M8 13h8m-8 4h8" /></svg>
+                </div>
+                <span class="card-index">01</span>
+              </div>
+              <h3>A tiny form</h3>
+              <p>Give the inputs a whirl. Your response stays right here.</p>
+              <form id="test-form" class="test-form">
+                <label for="name-input">Your name</label>
+                <input id="name-input" name="name" type="text" placeholder="e.g. Alex" autocomplete="given-name" required />
+                <label for="mood-select">Current mood</label>
+                <div class="select-wrap">
+                  <select id="mood-select" name="mood">
+                    <option value="curious">Curious</option>
+                    <option value="focused">Focused</option>
+                    <option value="adventurous">A little adventurous</option>
+                    <option value="sleepy">Sleepy but trying</option>
+                  </select>
+                </div>
+                <button class="button button-primary form-submit" type="submit">
+                  Send it over <span aria-hidden="true">↗</span>
+                </button>
+                <p id="form-message" class="inline-message" aria-live="polite"></p>
+              </form>
+            </article>
+
+            <article class="card action-card">
+              <div class="card-heading">
+                <div class="card-icon icon-lilac" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18m9-9H3" /><circle cx="12" cy="12" r="9" /></svg>
+                </div>
+                <span class="card-index">02</span>
+              </div>
+              <h3>Button playground</h3>
+              <p>Every click counts. How high can you get it?</p>
+              <div class="counter-panel">
+                <span class="counter-label">BUTTON CLICKS</span>
+                <div class="counter-row">
+                  <span id="click-count" class="counter-value" aria-live="polite">0</span>
+                  <button class="button button-secondary" id="count-button" type="button">
+                    Click me <span aria-hidden="true">↗</span>
+                  </button>
+                </div>
+              </div>
+              <button class="text-button" id="reset-count" type="button">Reset counter <span aria-hidden="true">↺</span></button>
+              <button class="button button-outline" id="toast-button" type="button">Show a little toast</button>
+            </article>
+
+            <article class="card tabs-card">
+              <div class="card-heading">
+                <div class="card-icon icon-mint" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18M8 4v5" /></svg>
+                </div>
+                <span class="card-index">03</span>
+              </div>
+              <h3>Tab switcher</h3>
+              <p>Swap between a few different little notes.</p>
+              <div class="tabs" role="tablist" aria-label="Test notes">
+                <button class="tab is-active" id="tab-one" type="button" role="tab" aria-selected="true" aria-controls="tab-panel" data-tab="one">First</button>
+                <button class="tab" id="tab-two" type="button" role="tab" aria-selected="false" aria-controls="tab-panel" data-tab="two" tabindex="-1">Second</button>
+                <button class="tab" id="tab-three" type="button" role="tab" aria-selected="false" aria-controls="tab-panel" data-tab="three" tabindex="-1">Third</button>
+              </div>
+              <div class="tab-panel" id="tab-panel" role="tabpanel" aria-labelledby="tab-one" tabindex="0">
+                <span class="panel-spark" aria-hidden="true">✳</span>
+                <div>
+                  <strong id="tab-title">A fresh start</strong>
+                  <p id="tab-copy">You’re on the first tab. Go ahead and try another.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="card modal-card">
+              <div class="card-heading">
+                <div class="card-icon icon-blue" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M8 10h8m-8 4h5" /></svg>
+                </div>
+                <span class="card-index">04</span>
+              </div>
+              <h3>One small dialog</h3>
+              <p>Open it up, close it again. The classics still work.</p>
+              <div class="dialog-preview" aria-hidden="true">
+                <span class="preview-dot"></span><span class="preview-line preview-line-long"></span>
+                <span class="preview-line preview-line-short"></span><span class="preview-button"></span>
+              </div>
+              <button class="button button-outline" id="open-dialog" type="button">Open the dialog <span aria-hidden="true">↗</span></button>
+            </article>
+          </div>
+          <footer class="footer"><span>Made for curious clicks.</span><span>Go on, give it a try <span class="footer-spark">✳</span></span></footer>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="test-dialog" id="test-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-content">
+        <button class="dialog-close icon-button" id="close-dialog" type="button" aria-label="Close dialog">×</button>
+        <div class="dialog-illustration" aria-hidden="true">✳</div>
+        <span class="section-kicker">JUST CHECKING IN</span>
+        <h2 id="dialog-title">You found the dialog!</h2>
+        <p>Everything is working just as it should. Feel free to close this and try something else.</p>
+        <button class="button button-primary dialog-done" id="dialog-done" type="button">Sounds good</button>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
